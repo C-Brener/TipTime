@@ -64,11 +64,13 @@ fun TipTimeScreen() {
 
 @Composable
 fun EditNumberField() {
-    var amountInput =  mutableStateOf("0")
+    var amountInput by remember {
+        mutableStateOf("")
+    }
     TextField(
-        value = amountInput.value,
+        value = amountInput,
         onValueChange = {
-            amountInput.value = it
+            amountInput = it
         },
         modifier = Modifier
             .fillMaxWidth()
@@ -93,5 +95,8 @@ fun DefaultPreview() {
 // O próprio compose faz a recomposição.
 // Quando a recomposição acontece, propriedades que não persistem seu valor serão reinicializadas, dessa forma
 // além do estado é necessário fazer com que o estado persista seu valor e só seja alterado quando tiver interação do Usuario
+// a função remember trabalha em conjunto com o estado para atualizar e persistir os dados que foram salvos, para
+//que no processo de recomposição o valor do estado não retorne ao valor inicial.
 
+//O remember utiliza-se do by para delegar o getter e setter da varíavel para o remember
 
