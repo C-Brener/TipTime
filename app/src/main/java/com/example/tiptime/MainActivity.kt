@@ -16,6 +16,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -52,7 +57,23 @@ fun TipTimeScreen() {
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.height(16.dp))
+        EditNumberField()
+
     }
+}
+
+@Composable
+fun EditNumberField() {
+    var amountInput =  mutableStateOf("0")
+    TextField(
+        value = amountInput.value,
+        onValueChange = {
+            amountInput.value = it
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentWidth(align = Alignment.CenterHorizontally)
+    )
 }
 
 @Preview(showSystemUi = true)
@@ -62,3 +83,15 @@ fun DefaultPreview() {
         TipTimeScreen()
     }
 }
+
+// A composição acontece apenas uma vez dentro do nosso app que é na criação do mesmo, desta forma
+// quando queremos que nossa UI atualize o valor em tempo de execução é utilizando dos estados para fazer essa
+// manipulação, isso por quê o estado trabalha junto com a recomposição, avisando quando composable teve seu valor
+// alterado fazendo com que o mesmo atualize a UI
+
+// O compose fica observando cada composable que recebe uma variavel de estado e quando esse valor é alterado
+// O próprio compose faz a recomposição.
+// Quando a recomposição acontece, propriedades que não persistem seu valor serão reinicializadas, dessa forma
+// além do estado é necessário fazer com que o estado persista seu valor e só seja alterado quando tiver interação do Usuario
+
+
