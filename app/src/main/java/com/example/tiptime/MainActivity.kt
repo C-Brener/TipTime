@@ -5,8 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -40,13 +44,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun TipTimeScreen() {
     Column(modifier = Modifier.padding(32.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+
 //        O spacedBy serve para adicionar um espaçamento fixo entre os filhos dentro do Column
         Text(
             text = stringResource(id = R.string.calculate_tip),
             fontSize = 24.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
